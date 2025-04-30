@@ -51,6 +51,16 @@ table {
 /* END OF RESET */
 
 /* Mobile Styles */
+body {
+  font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
+  font-size: 16px; /* Example base size */
+  line-height: 1.5; /* Example line height for readability */
+  color: #333333; /* Example text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Montserrat, 'Source Sans Pro', sans-serif;
+}
 
 
 /* Desktop Styles */
