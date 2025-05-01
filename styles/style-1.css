@@ -78,6 +78,14 @@ h4 {
 	font-size: 1.15em;
 }
 
+h5 {
+	font-size: 1.10em;
+}
+
+h6 {
+	font-size: 1.05em;
+}
+
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
 @media (min-width: 768px) { /* Example breakpoint for tablets and larger */
 	body {
@@ -99,6 +107,14 @@ h4 {
 
 	h4 {
 		font-size: 1.25em;
+	}
+
+	h5 {
+		font-size: 1.15em;
+	}
+
+	h6 {
+		font-size: 1.10em;
 	}
 
   
