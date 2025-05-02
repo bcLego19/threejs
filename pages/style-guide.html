@@ -142,6 +142,96 @@
 		}
 
 /*	class styles	*/
+		.button {
+		    display: inline-block;
+		    position: fixed;
+		    top: 50%;
+		    left: 50%;
+		    z-index: 2;
+		    /* Remove the default border */
+		    padding: 20px 32px;
+		    transform: translate(-50%, -50%);
+		    font-family: sans-serif;
+		    text-transform: uppercase;
+		    color: rgba(#fff, 0.8);
+		    cursor: pointer;
+		    transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+		    overflow: hidden; /* Add this to contain the growing border */
+		}
+
+		.button::before,
+		.button::after {
+		    content: '';
+		    position: absolute;
+		    background-color: lightblue; /* Your light border color */
+		    opacity: 1; /* Initially visible */
+		    transition: width 0.25s ease-in-out, height 0.25s ease-in-out, opacity 0.5s ease-in-out; /* Adjust opacity transition */
+		}
+
+		/* Initial state of the borders (visible) - Counter-Clockwise */
+		.button::before {
+		    top: 0;
+		    left: 0;
+		    width: 100%; /* Top border full width */
+		    height: 2px;
+		}
+
+		.button::after {
+		    bottom: 0;
+		    right: 0;
+		    width: 100%; /* Bottom border full width */
+		    height: 2px;
+		    transition-delay: 0.25s; /* Starts after top */
+		}
+
+		/* Left border (initially full height, then width 2px) */
+		.button::before {
+		    height: 100%;
+		    width: 2px;
+		    transition-delay: 0.5s; /* Starts after bottom starts */
+		}
+
+		/* Right border (initially full height, then width 2px) */
+		.button::after {
+		    height: 100%;
+		    width: 2px;
+		    transition-delay: 0s; /* Starts immediately */
+		}
+
+		/* Adjust positioning for left and right */
+		.button::before {
+		    left: 0;
+		    top: 0;
+		}
+
+		.button::after {
+		    right: 0;
+		    bottom: 0;
+		}
+
+		.button:hover {
+		    background-color: #fff;
+		    border-color: transparent; /* No visible border on hover */
+		    color: #444;
+		}
+
+		.button:hover::before,
+		.button:hover::after {
+		    opacity: 0; /* Make the pseudo-element borders disappear on hover */
+		    /* Optionally, you can add transitions for width and height back to 0 here for a disappearing animation */
+		    width: 0;
+		    height: 0;
+		    transition-delay: 0s; /* Reset delay for immediate disappearance */
+		}
+
+		.button:hover ~ .bg-1 {
+		    opacity: 0;
+		}
+
+		.button:hover ~ .bg-2 {
+		    opacity: 0.7;
+		}
+
 		.component-example {
 	        margin-bottom: 20px;
 	        padding: 15px;
@@ -152,53 +242,6 @@
 	    .component-example h4 {
 	        margin-top: 0;
 	    }
-
-	    .hover-border {
-		    position: relative; /* Needed for positioning pseudo-elements */
-		    /* Other button styles (padding, background, text color, etc.) */
-		    overflow: hidden; /* To clip the pseudo-elements if they extend beyond initially */
-		}
-
-		.hover-border::before,
-		.hover-border::after {
-		    content: '';
-		    position: absolute;
-		    background-color: lightblue; /* Your light border color */
-		    opacity: 0; /* Initially invisible */
-		    transition: opacity 0.3s ease-in-out; /* For a smooth fade in/out */
-		}
-
-		/* Top and Bottom Border (using ::before) */
-		.hover-border::before {
-		    left: 0;
-		    top: 0;
-		    width: 0;
-		    height: 2px; /* Border thickness */
-		}
-
-		.hover-border::after {
-		    right: 0;
-		    bottom: 0;
-		    width: 0;
-		    height: 2px; /* Border thickness */
-		}
-
-		/* Left and Right Border (we might need additional pseudo-elements or get creative with transforms) */
-		/* Another approach is to animate width/height sequentially */
-
-		.hover-border.border-active::before {
-		    width: 100%; /* Top border grows */
-		    opacity: 1;
-		    transition-delay: 0s; /* Starts immediately */
-		}
-
-		.hover-border.border-active::after {
-		    width: 100%; /* Bottom border grows */
-		    opacity: 1;
-		    transition-delay: 0.5s; /* Starts after a delay */
-		}
-
-		/* We might need to get more complex here with additional pseudo-elements or keyframes to control the left and right growth sequentially after top and bottom */
 
 		.style-color {
 			margin: 10px;
