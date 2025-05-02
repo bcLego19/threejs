@@ -153,6 +153,53 @@
 	        margin-top: 0;
 	    }
 
+	    .hover-border {
+		    position: relative; /* Needed for positioning pseudo-elements */
+		    /* Other button styles (padding, background, text color, etc.) */
+		    overflow: hidden; /* To clip the pseudo-elements if they extend beyond initially */
+		}
+
+		.hover-border::before,
+		.hover-border::after {
+		    content: '';
+		    position: absolute;
+		    background-color: lightblue; /* Your light border color */
+		    opacity: 0; /* Initially invisible */
+		    transition: opacity 0.3s ease-in-out; /* For a smooth fade in/out */
+		}
+
+		/* Top and Bottom Border (using ::before) */
+		.hover-border::before {
+		    left: 0;
+		    top: 0;
+		    width: 0;
+		    height: 2px; /* Border thickness */
+		}
+
+		.hover-border::after {
+		    right: 0;
+		    bottom: 0;
+		    width: 0;
+		    height: 2px; /* Border thickness */
+		}
+
+		/* Left and Right Border (we might need additional pseudo-elements or get creative with transforms) */
+		/* Another approach is to animate width/height sequentially */
+
+		.hover-border.border-active::before {
+		    width: 100%; /* Top border grows */
+		    opacity: 1;
+		    transition-delay: 0s; /* Starts immediately */
+		}
+
+		.hover-border.border-active::after {
+		    width: 100%; /* Bottom border grows */
+		    opacity: 1;
+		    transition-delay: 0.5s; /* Starts after a delay */
+		}
+
+		/* We might need to get more complex here with additional pseudo-elements or keyframes to control the left and right growth sequentially after top and bottom */
+
 		.style-color {
 			margin: 10px;
 		}
@@ -550,19 +597,19 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 
 	        <div class="component-example">
 	            <h4>Primary Button</h4>
-	            <button style="background-color: #00a2d3; color: #111111; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Call to Action</button>
+	            <button class="hover-border" style="background-color: #00a2d3; color: #111111; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Call to Action</button>
 	            <p><strong>Color:</strong> Bright Cyan (#00a2d3)<br><strong>Text Color:</strong> Dark Text (#111111)<br><strong>Hover State:</strong> (Define hover style, e.g., slightly darker background)<br><strong>Use:</strong> Primary actions, important links.</p>
 	        </div>
 
 	        <div class="component-example">
 	            <h4>Secondary Button</h4>
-	            <button style="background-color: #0088b0; color: #111111; padding: 8px 16px; border: 1px solid #0088b0; border-radius: 5px; cursor: pointer;">View Details</button>
+	            <button class="hover-border" style="background-color: #0088b0; color: #111111; padding: 8px 16px; border: 1px solid #0088b0; border-radius: 5px; cursor: pointer;">View Details</button>
 	            <p><strong>Color:</strong> Medium Blue (#0088b0)<br><strong>Text Color:</strong> Dark Text (#111111)<br><strong>Hover State:</strong> (Define hover style, e.g., background becomes slightly darker)<br><strong>Use:</strong> Secondary actions, less emphasized links.</p>
 	        </div>
 
 	        <div class="component-example">
 	            <h4>Dark Background Button</h4>
-	            <button style="background-color: #162f71; color: #eeeeee; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+	            <button class="hover-border" style="background-color: #162f71; color: #eeeeee; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
 	            <p><strong>Color:</strong> Deep Navy (#162f71)<br><strong>Text Color:</strong> Light Text (#eeeeee)<br><strong>Hover State:</strong> (Define hover style, e.g., slightly lighter background)<br><strong>Use:</strong> Actions on dark backgrounds.</p>
 	        </div>
 	    </section>
@@ -623,7 +670,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 	        </div>
 	        <div class="component-example">
 	            <h4>Button (Submit)</h4>
-	            <button style="background-color: #00a2d3; color: #111111; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+	            <button class="hover-border" style="background-color: #00a2d3; color: #111111; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
 	            <p><strong>(Refer to Buttons section for styling details)</strong></p>
 	        </div>
 	    </section>
