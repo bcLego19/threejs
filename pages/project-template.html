@@ -12,6 +12,15 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<!-- ThreeJS Import Map -->
+	<script type="importmap">
+		{
+		  "imports": {
+		    "three": "https://cdn.jsdelivr.net/npm/three@v0.176.0/build/three.module.js",
+		    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.176.0/examples/jsm/"
+		  }
+		}
+	</script>
 </head>
 <body>
 
@@ -25,9 +34,9 @@
 			
 		</div>
 
-		<div id="threejs-canvas"></div>
+		<div id="threejs-canvas" style="width: 500px; height: 500px; border: 1px solid grey;"></div>
 
-		<script src="../scripts/general/name-of-script.js"></script>
+		<script type="module" src="../scripts/threejs/tutorial.js"></script>
 		
 	</div>
 
