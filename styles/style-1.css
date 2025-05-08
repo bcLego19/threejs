@@ -52,14 +52,12 @@ table {
 
 /* Mobile Styles */
 body {
-  font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
-  font-size: 16px; /* Example base size */
-  line-height: 1.5; /* Example line height for readability */
-  color: #333333; /* Example text color */
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: Montserrat, 'Source Sans Pro', sans-serif;
+	font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
+	font-size: 16px; /* Example base size */
+	line-height: 1.5; /* Example line height for readability */
+	color: #333333; /* Example text color */
+	justify-items: center;
+	align-content: center;
 }
 
 h1 {
@@ -84,6 +82,368 @@ h5 {
 
 h6 {
 	font-size: 1.05em;
+}
+
+#style-guide, #component-checks {
+	display: grid;
+	grid-template-columns: 1fr;
+	max-width: 1200px;
+	width: 100%;
+}
+
+/* Color Palette Classes */
+.primary-bg {
+	background-color: #162f71; /* Deep Navy */
+}
+
+.primary-text {
+	color: #eeeeee; /* Light Text */
+}
+
+.secondary-bg {
+	background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
+}
+
+.secondary-text {
+	color: #111111; /* Dark Text (using a contrasting neutral) */
+}
+
+.accent-bg {
+	background-color: #00a2d3; /* Bright Cyan */
+}
+
+.accent-text {
+	color: #111111; /* Dark Text */
+}
+
+.neutral-light-bg {
+	background-color: #eeeeee;
+}
+
+.neutral-light-text {
+	color: #111111;
+}
+
+.neutral-dark-bg {
+	background-color: #111111;
+}
+
+.neutral-dark-text {
+	color: #eeeeee;
+}
+
+/* Apply these classes to your color swatches */
+#color-1 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-1 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-1 .deep-navy .swatch {
+	background-color: #162f71;
+}
+
+#color-1 .light-text {
+	color: #eeeeee;
+}
+
+#color-2 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-2 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-2 .teal-blue .swatch {
+	background-color: #006d8e;
+}
+
+#color-2 .light-text {
+	color: #eeeeee;
+}
+
+#color-3 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-3 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-3 .bright-cyan .swatch {
+	background-color: #00a2d3;
+}
+
+#color-3 .dark-text {
+	color: #111111;
+}
+
+#color-4 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-4 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-4 .dark-moderate-blue .swatch {
+	background-color: #194e70;
+}
+
+#color-4 .light-text {
+	color: #eeeeee;
+}
+
+#color-5 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-5 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-5 .medium-blue .swatch {
+	background-color: #0088b0;
+}
+
+#color-5 .dark-text {
+	color: #111111;
+}
+
+#color-6 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-6 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-6 .dark-teal .swatch {
+	background-color: #0e4347;
+}
+
+#color-6 .light-text {
+	color: #eeeeee;
+}
+
+#color-7 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-7 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-7 .neutral-dark .swatch {
+	background-color: #111111;
+}
+
+#color-7 .light-text {
+	color: #eeeeee;
+}
+
+#color-8 div {
+	display: grid;
+	grid-template-columns: 1fr; /* Stack text on top */
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#color-8 .swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+#color-8 .neutral-light .swatch {
+	background-color: #eeeeee;
+}
+
+#color-8 .dark-text {
+	color: #111111;
+}
+
+/*	class styles	*/
+.component-example {
+	margin-bottom: 20px;
+	padding: 15px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+}
+
+.component-example h4 {
+	margin-top: 0;
+}
+
+.button { /* General button styles */
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: color 0.3s ease-in-out;
+	z-index: 1;
+	display: inline-block; /* Changed to inline-block for simpler layout */
+}
+
+.button::before { /* Sliding overlay */
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	transition: left 0.3s ease-in-out;
+	z-index: -1;
+}
+
+.button:hover::before {
+	left: 0;
+}
+
+.button i { /* Arrow icon */
+	font-size: 1.2em;
+	margin-left: 8px; /* Space for the arrow */
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.button:hover i {
+	opacity: 1;
+}
+
+/* Primary Button Hover */
+.primary-button {
+	background-color: #00a2d3;
+	color: #111111;
+}
+
+.primary-button::before {
+	background-color: #0088b0; /* Medium Blue */
+}
+
+.primary-button:hover {
+	color: #eeeeee;
+}
+
+/* Secondary Button Hover */
+.secondary-button {
+	background-color: #0088b0;
+	color: #eeeeee;
+	border: 1px solid #0088b0;
+	padding: 8px 16px;
+}
+
+.secondary-button::before {
+	background-color: #00a2d3; /* Bright Cyan */
+}
+
+.secondary-button:hover {
+	color: #111111;
+}
+
+/* Dark Background Button Hover */
+.dark-button {
+	background-color: #162f71;
+	color: #eeeeee;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.dark-button:hover {
+	background-color: #194e70; /* Slightly lighter on hover */
+}
+
+.dark-button:hover i {
+	opacity: 1;
+}
+
+/* Link Styles */
+a {
+	color: #00a2d3;
+	text-decoration: none;
+	transition: text-decoration 0.3s ease-in-out;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.nav-link {
+	background-color: #162f71;
+	color: #eeeeee;
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+
+.nav-link:hover {
+	background-color: #194e70; /* Slightly darker on hover */
+	text-decoration: none;
+}
+
+.style-color {
+	margin: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+	gap: 10px;
+}
+
+.style-color div {
+	padding: 15px;
+	text-align: center;
+}
+
+.swatch {
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+	margin-bottom: 5px;
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */

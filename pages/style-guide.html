@@ -56,241 +56,7 @@
     * RGB: 25, 78, 112 (Closest to your #194e70)
     * Use: Potentially for secondary text on lighter backgrounds or as a very subtle background element.
 	 -->
-	<style>
-		body {
-			font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
-			font-size: 16px; /* Example base size */
-			line-height: 1.5; /* Example line height for readability */
-			color: #333333; /* Example text color */
-			justify-items: center;
-			align-content: center;
-		}
-
-		h1 {
-			font-size: 2em;
-		}
-
-		h2 {
-			font-size: 1.5em;
-		}
-
-		h3 {
-			font-size: 1.25em;
-		}
-
-		h4 {
-			font-size: 1.15em;
-		}
-
-		h5 {
-			font-size: 1.10em;
-		}
-
-		h6 {
-			font-size: 1.05em;
-		}
-
-		#style-guide, #component-checks {
-			display: grid;
-			grid-template-columns: 1fr;
-			width: 1200px;
-		}
-
-		#color-1, #color-2, #color-3, #color-4, #color-5, #color-6, #color-7, #color-8 {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-
-		#color-1 div {
-			background-color: #162f71;
-			color: #eeeeee;
-		}
-
-		#color-2 div {
-			background-color: #006d8e;
-			color: #eeeeee;
-		}
-
-		#color-3 div {
-			background-color: #00a2d3;
-			color: #111111;
-		}
-
-		#color-4 div {
-			background-color: #194e70;
-			color: #eeeeee;
-		}
-
-		#color-5 div {
-			background-color: #0088b0;
-			color: #111111;
-		}
-
-		#color-6 div {
-			background-color: #0e4347;
-			color: #eeeeee;
-		}
-
-		#color-7 div {
-			background-color: #111111;
-			color: #eeeeee;
-		}
-
-		#color-8 div {
-			background-color: #eeeeee;
-			color: #111111;
-		}
-
-/*	class styles	*/
-		.component-example {
-	        margin-bottom: 20px;
-	        padding: 15px;
-	        border: 1px solid #eee;
-	        border-radius: 5px;
-	    }
-
-	    .component-example h4 {
-	        margin-top: 0;
-	    }
-
-	    .button { /* General button styles */
-	        padding: 10px 20px;
-	        padding-right: 0px;
-	        padding-left: 20px;
-	        border: none;
-	        border-radius: 5px;
-	        cursor: pointer;
-	        position: relative; /* For absolute positioning of pseudo-elements */
-	        overflow: hidden; /* Clip the sliding square */
-	        transition: color 0.3s ease-in-out, padding 0.2s ease-in-out; /* Smooth text color transition */
-	        z-index: 1;
-	        display: inline-flex; /* To align text and icon */
-	        align-items: center;
-	        justify-content: center;
-	        gap: 8px; /* Space between text and icon */
-	    }
-
-	    .button::before { /* Sliding overlay */
-	        content: "";
-	        position: absolute;
-	        top: 0;
-	        left: -100%; /* Start off-screen */
-	        width: 100%;
-	        height: 100%;
-	        transition: left 0.3s ease-in-out; /* Smooth slide-in */
-	        z-index: -1;
-	    }
-
-	    .button:hover {
-	    	padding-right: 10px;
-	    	padding-left: 10px;
-	    }
-
-	    .button:hover::before {
-	        left: 0; /* Slide in on hover */
-	    }
-
-	    .button i { /* Arrow icon */
-	        font-size: 1.2em;
-	        opacity: 0; /* Initially hidden */
-	        transition: opacity 0.3s ease-in-out; /* Fade in/out */
-	        transition-delay: 0.3s;
-	    }
-
-	    .button:hover i {
-	        opacity: 1; /* Fade in on hover */
-	    }
-
-	    /* Primary Button Hover */
-	    .primary-button {
-	        background-color: #00a2d3;
-	        color: #111111;
-	    }
-
-	    .primary-button::before {
-	        background-color: #0088b0; /* Medium Blue */
-	    }
-
-	    .primary-button:hover {
-	        color: #eeeeee; /* Change text color on hover */
-	    }
-
-	    /* Secondary Button Hover */
-	    .secondary-button {
-	        background-color: #0088b0;
-	        color: #eeeeee;
-	        border: 1px solid #0088b0;
-	        padding: 8px 16px; /* Adjust padding to match */
-	        padding-right: 0px;
-	        padding-left: 18px;
-	    }
-
-	    .secondary-button::before {
-	        background-color: #00a2d3; /* Bright Cyan */
-	    }
-
-	    .secondary-button:hover {
-	        color: #111111; /* Change text color on hover */
-	        padding-left: 9px;
-	        padding-right: 9px;
-	    }
-
-	    /* Dark Background Button Hover */
-	    .dark-button {
-	    	padding-right: 0px;
-	    	padding-left: 20px;
-	        background-color: #162f71;
-	        color: #eeeeee;
-	        transition: background-color 0.3s ease-in-out, padding 0.2s ease-in-out; /* Smooth background transition */
-	    }
-
-	    .dark-button::before {
-	        background-color: rgba(255, 255, 255, 0.1); /* Subtle light overlay */
-	    }
-
-	    .dark-button:hover {
-	    	padding-right: 10px;
-	    	padding-left: 10px;
-	        background-color: #194e70; /* Slightly lighter on hover */
-	    }
-
-	    .dark-button:hover i {
-	        opacity: 1; /* Fade in arrow on hover */
-	    }
-
-	    /* Link Styles */
-	    a {
-	        color: #00a2d3;
-	        text-decoration: none;
-	        transition: text-decoration 0.3s ease-in-out;
-	    }
-
-	    a:hover {
-	        text-decoration: underline;
-	    }
-
-	    .nav-link {
-	        background-color: #162f71;
-	        color: #eeeeee;
-	        padding: 5px 10px;
-	        border-radius: 3px;
-	    }
-
-	    .nav-link:hover {
-	        background-color: #194e70; /* Slightly darker on hover */
-	        text-decoration: none;
-	    }
-
-		.style-color {
-			margin: 10px;
-		}
-
-		.style-color div {
-			height: 400px;
-			margin: 10px;
-			padding: 10px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="../styles/style-1.css">
 </head>
 <body>
 	<h1>Style Guide</h1>
@@ -310,7 +76,7 @@
 
 		<h3>Primary Colors [60%]</h3>
 		<h4>Deep Navy Blue</h4>
-		<div id="color-1" class="style-color">
+		<div id="color-1" class="style-color primary-bg primary-text">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -357,7 +123,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 
 		<h3>Secondary Color [30%]</h3>
 		<h4>Medium Blue</h4>
-		<div id="color-5" class="style-color">
+		<div id="color-5" class="style-color secondary-bg secondary-text">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -403,7 +169,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 		</div>
 
 		<h4>Medium Teal Blue</h4>
-		<div id="color-2" class="style-color">
+		<div id="color-2" class="style-color secondary-bg primary-text" style="background-color: #006d8e; color: #eeeeee;">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -450,7 +216,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 
 		<h3>Accent Colors [10%]</h3>
 		<h4>Bright Cyan Blue</h4>
-		<div id="color-3" class="style-color">
+		<div id="color-3" class="style-color accent-bg dark-text">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -496,7 +262,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 		</div>
 
 		<h4>Dark Teal</h4>
-		<div id="color-6" class="style-color">
+		<div id="color-6" class="style-color accent-bg primary-text" style="background-color: #0e4347; color: #eeeeee;">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -543,7 +309,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 
 		<h3>Neutral Colors</h3>
 		<h4>Dark Moderate Blue</h4>
-		<div id="color-4" class="style-color">
+		<div id="color-4" class="style-color primary-bg primary-text" style="background-color: #194e70; color: #eeeeee;">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -589,7 +355,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 		</div>
 
 		<h4>Light Text</h4>
-		<div id="color-7" class="style-color">
+		<div id="color-7" class="style-color neutral-dark-bg primary-text">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -635,7 +401,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 		</div>
 
 		<h4>Dark Text</h4>
-		<div id="color-8" class="style-color">
+		<div id="color-8" class="style-color neutral-light-bg dark-text">
 			<div style="font-family: Montserrat;">
 				<h1>Montserrat</h1>
 				<h2>Montserrat</h2>
@@ -762,7 +528,7 @@ Whereas disregard and contempt for human rights have resulted in barbarous acts 
 	        </div>
 	        <div class="component-example">
 	            <h4>Button (Submit)</h4>
-	            <button class="hover-border" style="background-color: #00a2d3; color: #111111; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+	            <button class="button primary-button" style="background-color: #00a2d3; border: none; border-radius: 5px; cursor: pointer;">Submit<i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 	            <p><strong>(Refer to Buttons section for styling details)</strong></p>
 	        </div>
 	    </section>
