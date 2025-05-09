@@ -407,12 +407,28 @@ h6 {
 /* Link Styles */
 a {
 	color: #00a2d3;
-	text-decoration: none;
-	transition: text-decoration 0.3s ease-in-out;
+	text-decoration: none; /* Initially no underline */
+	position: relative; /* For positioning the pseudo-element */
+	transition: color 0.3s ease-in-out; /* Optional: Smooth color transition */
+}
+
+a::after {
+	content: "";
+	position: absolute;
+	bottom: -2px; /* Adjust to position the underline */
+	left: 0;
+	width: 0; /* Start with zero width */
+	height: 2px; /* Adjust underline thickness */
+	background-color: #00a2d3; /* Underline color */
+	transition: width 0.3s ease-in-out; /* Smooth width transition */
 }
 
 a:hover {
-	text-decoration: underline;
+	color: #006d8e; /* Optional: Change link color on hover */
+}
+
+a:hover::after {
+	width: 100%; /* Expand the underline to full width on hover */
 }
 
 .nav-link {
