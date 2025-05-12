@@ -528,6 +528,12 @@ a:hover::after {
   z-index: 1;
 }
 
+/* wrapper styling */
+#wrapper {
+	background-color: #162f71; /* Deep Navy */
+	color: #eeeeee; /* Light Text */
+}
+
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
 @media (min-width: 768px) { /* Example breakpoint for tablets and larger */
 	body {
