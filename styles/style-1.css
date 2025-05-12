@@ -533,6 +533,7 @@ a:hover::after {
 
 /* wrapper styling */
 #wrapper {
+	width: 100%;
 	background-color: #162f71; /* Deep Navy */
 	color: #eeeeee; /* Light Text */
 }
