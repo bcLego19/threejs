@@ -9,17 +9,6 @@ hamburgerMenuButton.addEventListener('click', function() {
   hamburgerSwitch(hamburgerMenu, hamburgerToggle);
 });
 
-hamburgerMenu.addEventListener("mouseleave", () => {
-  closeMenuOnLeave();
-});
-
-function closeMenuOnLeave() {
-  setTimeout(function() {
-    if(hamburgerToggle) hamburgerToggle = false;
-  hamburgerSwitch(hamburgerMenu, hamburgerToggle);
-  }, 2000);
-}
-
 function hamburgerSwitch(menu, toggle) {
   if(toggle) {
     menu.style.display = "block";
