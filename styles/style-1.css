@@ -309,18 +309,6 @@ h6 {
 	color: #111111;
 }
 
-#hamburger {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  font-size: 20px;
-  text-align: center;
-}
-
-#hamburger-menu {
-  display: none;
-}
-
 /*	class styles	*/
 .component-example {
 	margin-bottom: 20px;
@@ -517,6 +505,27 @@ a:hover::after {
 	width: 100%;
 	border-radius: 5px;
 	margin-bottom: 5px;
+}
+
+/* hamburger menu styles */
+#hamburger {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#hamburger-menu {
+  display: none;
+  position: absolute;
+  top: 50px; /* Adjust as needed */
+  right: 0;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 250px;
+  height: 300px;
+  z-index: 1;
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
