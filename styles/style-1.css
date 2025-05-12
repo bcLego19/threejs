@@ -53,7 +53,7 @@ table {
 /* Mobile Styles */
 body {
 	font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
-	font-size: 16px; /* Example base size */
+	font-size: 24px; /* Example base size */
 	line-height: 1.5; /* Example line height for readability */
 	color: #333333; /* Example text color */
 	justify-items: center;
@@ -509,11 +509,12 @@ a:hover::after {
 
 /* hamburger menu styles */
 #hamburger {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
+  width: 100%;
+  height: 100%;
   font-size: 20px;
   text-align: center;
+	background-color: #00a2d3; /* Bright Cyan */
+	color: #111111; /* Dark Text */
 }
 
 #hamburger-menu {
@@ -526,12 +527,31 @@ a:hover::after {
   width: 250px;
   height: 300px;
   z-index: 1;
+  background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
+	color: #111111; /* Dark Text (using a contrasting neutral) */
 }
 
 /* wrapper styling */
 #wrapper {
 	background-color: #162f71; /* Deep Navy */
 	color: #eeeeee; /* Light Text */
+}
+
+/* header and footer styling */
+header, footer {
+	width: 100%;
+	height: 50px;
+	background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
+	color: #111111; /* Dark Text (using a contrasting neutral) */
+}
+
+header {
+	display: grid;
+	grid-template-columns: 1fr 50px;
+}
+
+footer {
+
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
