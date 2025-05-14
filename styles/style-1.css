@@ -555,6 +555,14 @@ footer {
 
 }
 
+/* three js viewport styling */
+
+#threejs-canvas {
+	width: 50vw;
+	height: 50vh;
+	border: 1px solid grey;
+}
+
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
 @media (min-width: 768px) { /* Example breakpoint for tablets and larger */
 	body {
