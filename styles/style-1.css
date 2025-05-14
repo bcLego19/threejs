@@ -558,7 +558,7 @@ footer {
 /* three js viewport styling */
 
 #threejs-canvas {
-	width: auto;
+	width: auto-fill;
 	height: 50vh;
 	border: 1px solid grey;
 }
