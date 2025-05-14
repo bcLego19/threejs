@@ -25,3 +25,12 @@ function animate() {
 	renderer.render( scene, camera );
 
 }
+
+// --- Handling Window Resize ---
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+}
+
+window.addEventListener('resize', onWindowResize, false);
