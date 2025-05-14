@@ -12,7 +12,9 @@ const initialCameraPosition = new THREE.Vector3().copy(camera.position);
 // 3. Initialize the Renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+
+const threeCanvas = document.querySelector("#threejs-canvas");
+threeCanvas.appendChild( renderer.domElement );
 
 // --- Grid Setup ---
 const gridRows = 2;
