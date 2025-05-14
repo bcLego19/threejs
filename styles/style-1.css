@@ -531,7 +531,12 @@ a:hover::after {
 	color: #111111; /* Dark Text (using a contrasting neutral) */
 }
 
-/* wrapper styling */
+/* wrapper and content styling */
+#content {
+	padding: 50px;
+	min-height: 88vh;
+}
+
 #wrapper {
 	width: 100%;
 	background-color: #162f71; /* Deep Navy */
