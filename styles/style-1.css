@@ -61,27 +61,27 @@ body {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2.5em;
 }
 
 h2 {
-	font-size: 1.5em;
+	font-size: 2.0em;
 }
 
 h3 {
-	font-size: 1.25em;
+	font-size: 1.5em;
 }
 
 h4 {
-	font-size: 1.15em;
+	font-size: 1.25em;
 }
 
 h5 {
-	font-size: 1.10em;
+	font-size: 1.15em;
 }
 
 h6 {
-	font-size: 1.05em;
+	font-size: 1.10em;
 }
 
 #style-guide, #component-checks {
@@ -511,18 +511,19 @@ a:hover::after {
 #hamburger {
   width: 100%;
   height: 100%;
-  font-size: 20px;
+  font-size: 40px;
   text-align: center;
+  align-content: center;
 	background-color: #00a2d3; /* Bright Cyan */
 	color: #111111; /* Dark Text */
 }
 
 #hamburger-menu {
   display: none;
-  position: absolute;
-  top: 50px; /* Adjust as needed */
+  position: fixed;
+  top: 70px; /* Adjust as needed */
   right: 0;
-  border: 1px solid #ccc;
+  border: 5px dashed #00a2d3;
   padding: 5px;
   width: 250px;
   height: 300px;
@@ -531,10 +532,15 @@ a:hover::after {
 	color: #111111; /* Dark Text (using a contrasting neutral) */
 }
 
+#navigation-menu {
+	padding-right: 10px;
+}
+
 /* wrapper and content styling */
 #content {
-	padding: 50px;
-	min-height: 88vh;
+	padding: 70px 50px;
+	min-height: 600px;
+	height: 90vh;
 }
 
 #wrapper {
@@ -546,18 +552,26 @@ a:hover::after {
 /* header and footer styling */
 header, footer {
 	width: 100%;
-	height: 50px;
+	height: 70px;
 	background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
 	color: #111111; /* Dark Text (using a contrasting neutral) */
 }
 
 header {
+	position: fixed;
+	top: 0;
 	display: grid;
-	grid-template-columns: 1fr 50px;
+	grid-template-columns: 1fr 70px;
+	padding: 0 0 0 10px;
 }
 
 footer {
+	position: fixed;
+	bottom: 0;
+}
 
+#author {
+	align-content: center;
 }
 
 /* three js viewport styling */
