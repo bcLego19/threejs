@@ -55,7 +55,8 @@ body {
 	font-family: 'Roboto', 'Open Sans', sans-serif; /* Default for the entire body */
 	font-size: 24px; /* Example base size */
 	line-height: 1.5; /* Example line height for readability */
-	color: #333333; /* Example text color */
+	background-color: #162f71; /* Deep Navy */
+	color: #eeeeee; /* Light Text */
 	justify-items: center;
 	align-content: center;
 }
@@ -544,8 +545,7 @@ a:hover::after {
 
 #wrapper {
 	width: 100%;
-	background-color: #162f71; /* Deep Navy */
-	color: #eeeeee; /* Light Text */
+	height: 100vh;
 }
 
 /* header and footer styling */
