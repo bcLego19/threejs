@@ -579,6 +579,9 @@ footer {
 	width: auto-fill;
 	height: 50vh;
 	border: 1px solid grey;
+	padding-bottom: 20px;
+	justify-items: center;
+	align-content: center;
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
