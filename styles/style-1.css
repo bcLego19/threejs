@@ -540,7 +540,6 @@ a:hover::after {
 #content {
 	padding: 70px 50px;
 	min-height: 600px;
-	height: 90vh;
 }
 
 #wrapper {
