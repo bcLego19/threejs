@@ -573,7 +573,11 @@ footer {
 	align-content: center;
 }
 
-/* three js viewport styling */
+/* three js project template styling */
+
+.details {
+	padding: 50px;
+}
 
 #threejs-canvas {
 	width: auto-fill;
