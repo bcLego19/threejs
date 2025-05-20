@@ -582,8 +582,8 @@ footer {
 #threejs-canvas {
 	width: auto-fill;
 	height: 50vh;
-	border: 1px solid grey;
-	padding-bottom: 20px;
+	border-radius: 10px;
+	margin-bottom: 20px;
 	justify-items: center;
 	align-content: center;
 }
