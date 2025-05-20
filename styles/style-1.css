@@ -588,6 +588,29 @@ footer {
 	align-content: center;
 }
 
+/* index styling */
+#hero-unit {
+	padding: 70px 20px 50px 20px;
+}
+
+#carousel {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	border-radius: 10px;
+	padding: 10px;
+	margin-top: 30px;
+}
+
+.carousel-controls {
+	width: 50px;
+	height: 50px;
+}
+
+.carousel-items {
+	align-content: center;
+	justify-items: center;
+}
+
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
 @media (min-width: 768px) { /* Example breakpoint for tablets and larger */
 	body {
