@@ -596,14 +596,16 @@ footer {
 #carousel {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	border-radius: 10px;
+	grid-gap: 30px;
+	border-radius: 30px;
 	padding: 10px;
 	margin-top: 30px;
 }
 
 .carousel-controls {
-	width: 50px;
-	height: 50px;
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
 }
 
 .carousel-items {
