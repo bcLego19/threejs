@@ -524,7 +524,8 @@ a:hover::after {
   position: fixed;
   top: 70px; /* Adjust as needed */
   right: 0;
-  border: 5px dashed #00a2d3;
+  border: 2px solid #00a2d3;
+  border-radius: 10px;
   padding: 5px;
   width: 250px;
   height: 300px;
@@ -595,22 +596,47 @@ footer {
 
 #carousel {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 30px;
+	grid-template-columns: 1fr 3fr 1fr;
 	border-radius: 30px;
 	padding: 10px;
-	margin-top: 30px;
+	margin: 30px 0;
+	align-content: center;
+	justify-items: center;
 }
 
 .carousel-controls {
-	width: 100%;
-	height: 100%;
+	width: 50px;
+	height: 50%;
 	border-radius: 30px;
+	margin: auto 0;
+}
+
+.carousel-controls .left-button {
+	display: block;
+	position: left;
+}
+
+.carousel-controls .right-button {
+	position: right;
 }
 
 .carousel-items {
+	width: 100%;
 	align-content: center;
 	justify-items: center;
+}
+
+.carousel-item-main {
+	align-content: center;
+	justify-items: center;
+	width: 100%;
+}
+
+.carousel-item-main img {
+	align-content: center;
+	justify-items: center;
+	width: 100%;
+	max-width: 500px;
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
@@ -644,5 +670,65 @@ footer {
 		font-size: 1.10em;
 	}
 
+	/* index styling */
+	#hero-unit {
+		padding: 70px 20px 50px 20px;
+	}
+
+	#carousel {
+		display: grid;
+		grid-template-columns: 1fr 7fr 1fr;
+		border-radius: 30px;
+		padding: 10px;
+		margin: 30px 0;
+		align-content: center;
+		justify-items: center;
+	}
+
+	.carousel-controls {
+		width: 50px;
+		height: 50%;
+		border-radius: 30px;
+		margin: auto 0;
+	}
+
+	.carousel-controls .left-button {
+		display: block;
+		position: left;
+	}
+
+	.carousel-controls .right-button {
+		position: right;
+	}
+
+	.carousel-items {
+		width: 500px;
+		align-content: center;
+		justify-items: center;
+	}
+
+	.carousel-items div {
+		align-content: center;
+		justify-items: center;
+	}
+
+	.carousel-caption {
+		align-content: center;
+		justify-items: center;
+	}
+
+	.carousel-item-main {
+		align-content: center;
+		justify-items: center;
+		width: 400px;
+	}
+
+	.carousel-item-main img {
+		align-content: center;
+		justify-items: center;
+		width: 100%;
+		max-width: 500px;
+		padding: auto 0;
+	}
   
 }
