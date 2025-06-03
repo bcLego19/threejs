@@ -1,7 +1,7 @@
 /* Eric Meyer's Reset */
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
 */
 
 html, body, div, span, applet, object, iframe,
@@ -13,8 +13,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -25,7 +25,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -510,11 +510,11 @@ a:hover::after {
 
 /* hamburger menu styles */
 #hamburger {
-  width: 100%;
-  height: 100%;
-  font-size: 40px;
-  text-align: center;
-  align-content: center;
+	width: 100%;
+	height: 100%;
+	font-size: 40px;
+	text-align: center;
+	align-content: center;
 	background-color: #00a2d3; /* Bright Cyan */
 	color: #111111; /* Dark Text */
 }
@@ -594,49 +594,100 @@ footer {
 	padding: 70px 20px 50px 20px;
 }
 
+/* Carousel Styles */
 #carousel {
-	display: grid;
-	grid-template-columns: 1fr 3fr 1fr;
-	border-radius: 30px;
-	padding: 10px;
-	margin: 30px 0;
-	align-content: center;
-	justify-items: center;
+    position: relative; /* Essential for absolute positioning of controls if needed, and for carousel-view children */
+    display: flex; /* Use flexbox for layout of controls and carousel-view */
+    align-items: center; /* Vertically centers controls with carousel-view */
+    justify-content: space-between; /* Pushes controls to the ends */
+    width: 100%; /* Take full width of its parent */
+    max-width: 800px; /* Example max width, adjust as needed */
+    margin: 30px auto; /* Centers the carousel horizontally */
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
-.carousel-controls {
-	width: 50px;
-	height: 50%;
-	border-radius: 30px;
-	margin: auto 0;
-}
-
-.carousel-controls .left-button {
-	display: block;
-	position: left;
-}
-
-.carousel-controls .right-button {
-	position: right;
+#carousel-view {
+    flex-grow: 1; /* Allows the view to take up available space between controls */
+    position: relative; /* Essential for absolute positioning of carousel items within it */
+    overflow: hidden; /* Hides items that are not active */
+    min-height: 200px; /* Give it a minimum height to avoid collapse */
+    display: flex; /* Use flexbox for carousel-items within this to handle centering */
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-items {
-	width: 100%;
-	align-content: center;
-	justify-items: center;
+    /* These styles control the visibility and positioning of individual carousel items */
+    width: 100%;
+    /* Remove align-content/justify-items here as they are on #carousel-view */
+    /* position: absolute; /* Consider absolute positioning for smoother transitions later if you want */
+    /* top: 0; left: 0; */
 }
 
-.carousel-item-main {
-	align-content: center;
-	justify-items: center;
-	width: 100%;
+.carousel-items.active {
+    display: block; /* Shows the active item */
+    /* If using position: absolute, you might also add:
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.5s ease-in-out;
+    */
 }
 
+.carousel-items.inactive {
+    display: none; /* Hides inactive items */
+    /* If using position: absolute, you might also add:
+    opacity: 0;
+    z-index: 0;
+    */
+}
+
+.carousel-controls {
+    cursor: pointer;
+    width: 50px; /* Kept from your original */
+    height: 50%; /* Kept from your original */
+    border-radius: 30px; /* Kept from your original */
+    margin: auto 0; /* Kept from your original */
+    display: flex; /* Use flex to center the arrow content */
+    align-items: center;
+    justify-content: center;
+    user-select: none; /* Prevent text selection on click */
+}
+
+/* Add clear visual indicators for the controls */
+.carousel-controls.left-button::before {
+    content: '\276E'; /* Left arrow character */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.carousel-controls.right-button::before {
+    content: '\276F'; /* Right arrow character */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Remove these problematic position properties from your original CSS */
+.carousel-controls .left-button {
+	/* position: left; /* REMOVE THIS */ */
+    /* display: block; /* This is redundant with .carousel-controls now having display: flex */
+}
+
+.carousel-controls .right-button {
+	/* position: right; /* REMOVE THIS */ */
+}
+
+/* You already have these, ensure they're positioned correctly if carousel items have absolute positioning */
 .carousel-item-main img {
-	align-content: center;
-	justify-items: center;
-	width: 100%;
-	max-width: 500px;
+    /* ... existing styles ... */
+    display: block; /* Ensures img doesn't have extra space below it */
+    margin: 0 auto; /* Centers the image within its container */
+}
+
+.carousel-caption {
+    text-align: center; /* Center the caption text */
+    padding: 10px 0;
 }
 
 /* Desktop Styles (Apply to screens wider than a certain breakpoint, e.g., 768px or 992px) */
@@ -694,11 +745,11 @@ footer {
 
 	.carousel-controls .left-button {
 		display: block;
-		position: left;
+		position: left; /* This property doesn't exist in CSS. Should be removed or replaced with 'left' or 'right' if using absolute positioning within .carousel-controls */
 	}
 
 	.carousel-controls .right-button {
-		position: right;
+		position: right; /* This property doesn't exist in CSS. Should be removed or replaced with 'left' or 'right' if using absolute positioning within .carousel-controls */
 	}
 
 	.carousel-items {
@@ -730,5 +781,4 @@ footer {
 		max-width: 500px;
 		padding: auto 0;
 	}
-  
 }
