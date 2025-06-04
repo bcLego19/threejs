@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ThreeJS Portfolio - (project name)</title>
+	<!-- Font Awesome 4 Import -->
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	/>
+	<!-- Google Fonts Import -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<!-- ThreeJS Import Map !!! SERVE BEFORE VIEWING !!! -->
+	<script type="importmap">
+		{
+		  "imports": {
+		    "three": "https://cdn.jsdelivr.net/npm/three@v0.176.0/build/three.module.js",
+		    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.176.0/examples/jsm/"
+		  }
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="../styles/style-1.css">
+</head>
+<body>
+
+	<div id="wrapper">
+
+		<header>
+			<div id="author">
+				<h4>
+					Conner Batson
+				</h4>
+			</div>
+
+			<div id="navigation-menu">
+				<div id="hamburger">
+					<span><i class="fa fa-bars" aria-hidden="true"></i></span>
+				</div>
+				<div id="hamburger-menu" style="display: none;">
+					<div class="menu-item">item 1</div>
+	      			<div class="menu-item">item 2</div>
+	      			<div class="menu-item">item 3</div>
+	      			<div class="menu-item">item 4</div>
+	      			<div class="menu-item">item 5</div>
+	      			<div class="menu-item">item 6</div>
+				</div>
+			</div>
+		</header>
+
+		<div id="content">
+
+			<div class="details">
+
+				<h1>Platonic Solids</h1>
+
+				<p>Interested in working with ThreeJS, this is the first project I worked on after completing the tutorial project. This interactive project shows a series of rotating shapes that represent each platonic solid. You are also able to click on a platonic solid to zoom in and rotate the platonic solid with your mouse. Click on the button that appears to return to the main view.</p>
+				
+			</div>
+
+			<div id="threejs-canvas" class="secondary-bg secondary-text"></div>
+		
+		</div>
+
+		<footer>
+
+			<div id="info">
+				
+			</div>
+
+			<div id="links">
+				
+			</div>
+
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../scripts/general/hamburger-script.js"></script>
+	<script type="module" src="../scripts/threejs/platonic-solids.js"></script>
+
+</body>
+</html>
