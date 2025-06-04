@@ -73,14 +73,31 @@ const zoomDistance = 2;
 let isZoomingIn = false;
 let isZoomingOut = false;
 let zoomStartTime = 0;
-const zoomDuration = 500;
+const zoomDuration = 500; // This is the globally defined duration
 
 // --- Dragging Variables ---
 let isDragging = false;
 let previousMousePosition = new THREE.Vector2();
 
-// --- "Go Back" Button ---
-const goBackButton = document.getElementById('goBackButton');
+// --- Dynamically Create and Append "Go Back" Button ---
+const goBackButton = document.createElement('button');
+goBackButton.id = 'goBackButton'; // Assign the ID
+goBackButton.textContent = 'Go Back'; // Set the button text
+
+// Apply inline styles or add classes for styling
+// For better separation of concerns, consider adding a CSS class and styling it in style-1.css
+goBackButton.style.position = 'absolute'; // Position it absolutely within its parent
+goBackButton.style.top = '10px';
+goBackButton.style.left = '10px';
+goBackButton.style.padding = '10px 20px';
+goBackButton.style.backgroundColor = '#eee';
+goBackButton.style.border = '1px solid #ccc';
+goBackButton.style.borderRadius = '5px'; // Added border-radius for consistency
+goBackButton.style.cursor = 'pointer';
+goBackButton.style.display = 'none'; // Initially hidden
+
+threeCanvasContainer.appendChild(goBackButton); // Append the button to the Three.js canvas container
+
 goBackButton.addEventListener('click', onGoBackButtonClick, false);
 
 function onGoBackButtonClick() {
@@ -88,13 +105,13 @@ function onGoBackButtonClick() {
         isZoomingOut = true;
         isZoomingIn = false;
         zoomStartTime = performance.now();
-        const zoomOutDuration = 500;
+        // Removed local zoomOutDuration, using global zoomDuration instead
         const targetPosition = new THREE.Vector3().copy(initialCameraPosition);
 
         function zoomOutAnimation() {
             const currentTime = performance.now();
             const elapsedTime = currentTime - zoomStartTime;
-            const t = Math.min(1, elapsedTime / zoomOutDuration);
+            const t = Math.min(1, elapsedTime / zoomDuration); // Use global zoomDuration here
             camera.position.lerp(targetPosition, t);
 
             if (t < 1) {
@@ -193,13 +210,9 @@ function animate() {
     else if (isZoomingOut) {
         const currentTime = performance.now();
         const elapsedTime = currentTime - zoomStartTime;
-        const t = Math.min(1, elapsedTime / zoomDuration);
+        const t = Math.min(1, elapsedTime / zoomDuration); // Corrected: Using global zoomDuration
         camera.position.lerp(initialCameraPosition, t);
     }
-    // Default camera movement when no zoom is active
-    // Removed default camera lerp as it can interfere with zoom animations
-    // and might cause subtle drift if not carefully managed.
-    // The camera should only move when explicitly zooming in/out.
 
     renderer.render(scene, camera);
 }
