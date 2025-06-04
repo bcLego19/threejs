@@ -1,27 +1,31 @@
-const hamburgerMenuButton = document.querySelector("#hamburger");
-const hamburgerMenu = document.querySelector("#hamburger-menu");
-const menuItems = document.querySelectorAll(".menu-item");
+// scripts/general/hamburger-script.js
 
-let hamburgerToggle = false;
+// Define the initialization function for the hamburger menu
+function initHamburgerMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('hamburger-menu');
 
-hamburgerMenuButton.addEventListener('click', function() {
-  hamburgerToggle = !hamburgerToggle;
-  hamburgerSwitch(hamburgerMenu, hamburgerToggle);
-});
-
-function hamburgerSwitch(menu, toggle) {
-  if(toggle) {
-    menu.style.display = "block";
-  } else {
-    menu.style.display = "none";
-  }
+    if (hamburger && menu) {
+        // Only add event listener if elements are found
+        hamburger.addEventListener('click', () => {
+            // Toggle the display style of the menu
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        });
+        // Ensure the menu is initially hidden (if not already handled by CSS)
+        menu.style.display = 'none';
+    } else {
+        console.warn('Hamburger menu elements (#hamburger or #hamburger-menu) not found. Skipping initialization.');
+    }
 }
 
-menuItems.forEach((item, index) => {
-  item.addEventListener("click", () => {
-    hamburgerToggle = !hamburgerToggle;
+// If this script is loaded as a regular script (not a module),
+// you can make the function globally available:
+window.initHamburgerMenu = initHamburgerMenu;
 
- hamburgerSwitch(hamburgerMenu, hamburgerToggle);
-    
-  });
-});
+// If this script is loaded as a module (e.g., <script type="module">),
+// you would export it like this:
+// export { initHamburgerMenu };
+
+// For pages that load the menu directly in HTML, you might still want
+// to call it on DOMContentLoaded, but for dynamic loading, we'll call it explicitly.
+// document.addEventListener('DOMContentLoaded', initHamburgerMenu); // Remove or comment out if only dynamic loading
