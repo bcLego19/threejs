@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // If it's a module, it's safer to have an explicit init.
             // For now, assuming it's a simple script that will find elements once loaded.
 
+            window.initHamburgerMenu();
+
         } catch (error) {
             console.error('Error loading navigation menu partial:', error);
         }
