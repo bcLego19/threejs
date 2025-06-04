@@ -581,10 +581,11 @@ footer {
 }
 
 #threejs-canvas {
-	width: auto-fill;
+	width: 100%;
 	height: 50vh;
 	border-radius: 10px;
 	margin-bottom: 20px;
+	overflow: hidden;
 	justify-items: center;
 	align-content: center;
 }
