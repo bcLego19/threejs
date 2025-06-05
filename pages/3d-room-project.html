@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ThreeJS Portfolio - 3D Room</title>
+	<!-- Font Awesome 4 Import -->
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	/>
+	<!-- Google Fonts Import -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<!-- ThreeJS Import Map !!! SERVE BEFORE VIEWING !!! -->
+	<script type="importmap">
+		{
+		  "imports": {
+		    "three": "https://cdn.jsdelivr.net/npm/three@v0.176.0/build/three.module.js",
+		    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.176.0/examples/jsm/"
+		  }
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="../styles/style-1.css">
+</head>
+<body>
+
+	<div id="wrapper">
+
+		<header>
+			<div id="author">
+				<h4>
+					Conner Batson
+				</h4>
+			</div>
+
+			<div id="navigation-menu-placeholder">
+				<!-- Navigation menu will be loaded here by JavaScript -->
+			</div>
+		</header>
+
+		<div id="content">
+
+			<div class="details">
+
+				<h1>3D Room</h1>
+
+				<p>This project focuses on my interest in game design by attempting to create a room that I can traverse using standard wsad controls. The keys "A" and "D" rotate the camera view while "W" and "S" control forward and backward motions. Walls also have collision detection to stop moving through them, with the exception of allowing the camera to see through the walls when next to them. The floor is blue and each wall is grey with a square bearing a different color on each wall.</p>
+				
+			</div>
+
+			<div id="threejs-canvas" class="secondary-bg secondary-text"></div>
+		
+		</div>
+
+		<footer>
+
+			<div id="info">
+				
+			</div>
+
+			<div id="links">
+				
+			</div>
+
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../scripts/general/load-partials.js"></script> <!-- Load partials first -->
+	<script src="../scripts/general/hamburger-script.js"></script>
+	<script type="module" src="../scripts/threejs/3d-room.js"></script>
+
+</body>
+</html>
