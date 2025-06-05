@@ -521,9 +521,10 @@ a:hover::after {
 }
 
 #hamburger-menu {
+	/* Existing styles */
 	scroll-behavior: auto;
-	grid-row-gap: 0;
-	display: none;
+	/* Removed 'grid-row-gap: 0;' as 'gap' will replace it for consistency */
+	display: none; /* Toggled by JS to 'grid' */
 	position: fixed;
 	top: 70px; /* Adjust as needed */
 	right: 0;
@@ -533,8 +534,16 @@ a:hover::after {
 	width: 250px;
 	height: 300px;
 	z-index: 1000;
-	background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
+	background-color: #162f71; /* Medium Blue (using one of your secondary colors) */
 	color: #111111; /* Dark Text (using a contrasting neutral) */
+
+	/* --- NEW GRID PROPERTIES FOR THE MENU CONTAINER --- */
+	grid-template-columns: 1fr; /* Force all menu items into a single column */
+	grid-auto-rows: min-content; /* Each row (menu item) takes only as much height as its content needs */
+	gap: 10px; /* Add 10px space between grid items (menu items) */
+	align-items: stretch; /* Stretch items vertically within their grid cells */
+	justify-items: stretch; /* Stretch items horizontally within their grid cells (fills the 1fr column) */
+	padding: 10px; /* Increased overall padding for the menu content from the edges */
 }
 
 #navigation-menu {
