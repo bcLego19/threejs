@@ -437,6 +437,7 @@ a:hover::after {
 	background-color: #162f71;
 	color: #eeeeee;
 	padding: 5px 10px;
+	height: 1.2em;
 	border-radius: 3px;
 	text-decoration: none; /* Initially no underline */
 	position: relative; /* For positioning the pseudo-elements */
@@ -520,17 +521,19 @@ a:hover::after {
 }
 
 #hamburger-menu {
-  display: none;
-  position: fixed;
-  top: 70px; /* Adjust as needed */
-  right: 0;
-  border: 2px solid #00a2d3;
-  border-radius: 10px;
-  padding: 5px;
-  width: 250px;
-  height: 300px;
-  z-index: 1000;
-  background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
+	scroll-behavior: auto;
+	grid-row-gap: 0;
+	display: none;
+	position: fixed;
+	top: 70px; /* Adjust as needed */
+	right: 0;
+	border: 2px solid #00a2d3;
+	border-radius: 10px;
+	padding: 5px;
+	width: 250px;
+	height: 300px;
+	z-index: 1000;
+	background-color: #0088b0; /* Medium Blue (using one of your secondary colors) */
 	color: #111111; /* Dark Text (using a contrasting neutral) */
 }
 
