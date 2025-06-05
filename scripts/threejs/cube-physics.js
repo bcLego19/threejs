@@ -1,16 +1,25 @@
 // Import the Three.js library
 import * as THREE from 'three';
 
-// Step 1: Initialize the Three.js Scene
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+// Get a reference to the HTML container for the Three.js canvas
+const threeCanvasContainer = document.querySelector("#threejs-canvas");
+
+// 1. Initialize the Scene
+const scene = new THREE.Scene();
+
+// 2. Initialize the Camera
+// Get the dimensions of the container for initial camera aspect
+const containerWidth = threeCanvasContainer.clientWidth;
+const containerHeight = threeCanvasContainer.clientHeight;
+var camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize( containerWidth / 2, containerHeight / 2 );
 
 const threeCanvas = document.querySelector("#threejs-canvas");
+
 threeCanvas.appendChild( renderer.domElement );
 
-// Step 2: Create the Board
+// Step 3: Create the Board
 var boardWidth = 10;
 var boardHeight = 0.1;
 var boardDepth = 10;
@@ -20,7 +29,7 @@ var board = new THREE.Mesh(boardGeometry, boardMaterial);
 board.rotation.x = -Math.PI / 2;
 scene.add(board);
 
-// Step 3: Create the Walls
+// Step 4: Create the Walls
 var wallHeight = 2;
 var wallThickness = 0.2;
 var wallMaterial = new THREE.MeshBasicMaterial({ color: 0x778899 });
@@ -49,7 +58,7 @@ wall4.position.z = -boardDepth / 2 - wallThickness / 2;
 wall4.position.y = wallHeight / 2;
 scene.add(wall4);
 
-// Step 4: Create the Initial 3D Objects (All Cubes)
+// Step 5: Create the Initial 3D Objects (All Cubes)
 var cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 var cubeMaterialRed = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 var cube1 = new THREE.Mesh(cubeGeometry, cubeMaterialRed);
@@ -314,9 +323,9 @@ function animate() {
 animate();
 
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = containerWidth / containerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(containerWidth, containerHeight);
 }
 
 window.addEventListener('resize', onWindowResize, false);
