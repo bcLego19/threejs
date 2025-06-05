@@ -9,7 +9,7 @@ function initHamburgerMenu() {
         // Only add event listener if elements are found
         hamburger.addEventListener('click', () => {
             // Toggle the display style of the menu
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+            menu.style.display = menu.style.display === 'none' ? 'grid' : 'none';
         });
         // Ensure the menu is initially hidden (if not already handled by CSS)
         menu.style.display = 'none';
