@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ThreeJS Portfolio - Cube Physics</title>
+	<!-- Font Awesome 4 Import -->
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	/>
+	<!-- Google Fonts Import -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<!-- ThreeJS Import Map !!! SERVE BEFORE VIEWING !!! -->
+	<script type="importmap">
+		{
+		  "imports": {
+		    "three": "https://cdn.jsdelivr.net/npm/three@v0.176.0/build/three.module.js",
+		    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.176.0/examples/jsm/"
+		  }
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="../styles/style-1.css">
+</head>
+<body>
+
+	<div id="wrapper">
+
+		<header>
+			<div id="author">
+				<h4>
+					Conner Batson
+				</h4>
+			</div>
+
+			<div id="navigation-menu-placeholder">
+				<!-- Navigation menu will be loaded here by JavaScript -->
+			</div>
+		</header>
+
+		<div id="content">
+
+			<div class="details">
+
+				<h1>Cube Physics Test</h1>
+
+				<p>In addition to exploring collision experiments, I also decided to experiment with a basic physics simulation. In this simulation, a group of 3d objects are inside a rectangular box. There are several controls allowing for moving the objects around. At present, you can select items, increase and decrease current height, move them around using wsad, and deselect them to let them "fall" down. There is basic collision detection allowing objects to collide with other objects. A full list of actionable inputs are listed below.</p>
+
+				<h2>Controls:</h2>
+
+				<ul>
+					<li>Left Click on object: select the object that the cursor is over</li>
+					<li>Left Click on empty space: deselect current object if any</li>
+					<li>Escape: deselect current object if any</li>
+					<li>W key: Move selected object forward</li>
+					<li>S key: Move selected object backward</li>
+					<li>A key: Move selected object left</li>
+					<li>D key: Move selected object right</li>
+					<li>Q key: Rotate selected object</li>
+					<li>E key: Rotate selected object</li>
+					<li>+ key: Move selected object up</li>
+					<li>- key: Move selected object down</li>
+				</ul>
+				
+			</div>
+
+			<div id="threejs-canvas" class="secondary-bg secondary-text"></div>
+		
+		</div>
+
+		<footer>
+
+			<div id="info">
+				
+			</div>
+
+			<div id="links">
+				
+			</div>
+
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../scripts/general/load-partials.js"></script> <!-- Load partials first -->
+	<script src="../scripts/general/hamburger-script.js"></script>
+	<script type="module" src="../scripts/threejs/cube-physics.js"></script>
+
+</body>
+</html>
