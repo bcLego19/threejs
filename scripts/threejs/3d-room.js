@@ -1,13 +1,22 @@
 // Import the Three.js library
 import * as THREE from 'three';
 
-// 1. Initialize the Three.js Environment
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+// Get a reference to the HTML container for the Three.js canvas
+const threeCanvasContainer = document.querySelector("#threejs-canvas");
+
+// 1. Initialize the Scene
+const scene = new THREE.Scene();
+
+// 2. Initialize the Camera
+// Get the dimensions of the container for initial camera aspect
+const containerWidth = threeCanvasContainer.clientWidth;
+const containerHeight = threeCanvasContainer.clientHeight;
+var camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+renderer.setSize( containerWidth / 2, containerHeight / 2 );
 
 const threeCanvas = document.querySelector("#threejs-canvas");
+
 threeCanvas.appendChild( renderer.domElement );
 
 // 2. Create the Room
@@ -175,9 +184,9 @@ animate();
 
 // 15. Handle Window Resizing
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = containerWidth / containerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(containerWidth, containerHeight);
 }
 
 window.addEventListener('resize', onWindowResize, false);
