@@ -617,6 +617,7 @@ footer {
     justify-content: space-between; /* Pushes controls to the ends */
     width: 100%; /* Take full width of its parent */
     max-width: 800px; /* Example max width, adjust as needed */
+    height: 500px;
     margin: 30px auto; /* Centers the carousel horizontally */
     border-radius: 30px;
     padding: 10px;
