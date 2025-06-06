@@ -7,13 +7,20 @@ const threeCanvasContainer = document.querySelector("#threejs-canvas");
 // 1. Initialize the Scene
 const scene = new THREE.Scene();
 
+// --- Dragging Functionality ---
+// These variables should be declared at the top scope or right before their usage
+// to ensure they are properly initialized for the event listeners.
+// Moved these declarations here for clarity and correct scoping.
+let isDragging = false;
+let previousMousePosition = new THREE.Vector2();
+
 // 2. Initialize the Camera
 // Get the dimensions of the container for initial camera aspect
 const containerWidth = threeCanvasContainer.clientWidth;
 const containerHeight = threeCanvasContainer.clientHeight;
 var camera = new THREE.PerspectiveCamera(75, containerWidth / containerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( containerWidth / 2, containerHeight / 2 );
+renderer.setSize( containerWidth, containerHeight );
 
 const threeCanvas = document.querySelector("#threejs-canvas");
 
@@ -34,49 +41,56 @@ var wallHeight = 2;
 var wallThickness = 0.2;
 var wallMaterial = new THREE.MeshBasicMaterial({ color: 0x778899 });
 
-var wall1Geometry = new THREE.BoxGeometry(wallThickness, wallHeight, boardDepth);
-var wall1 = new THREE.Mesh(wall1Geometry, wallMaterial);
+// Wall 1: Positive X
+const wall1Geometry = new THREE.BoxGeometry(wallThickness, wallHeight, boardDepth);
+const wall1 = new THREE.Mesh(wall1Geometry, wallMaterial);
 wall1.position.x = boardWidth / 2 + wallThickness / 2;
 wall1.position.y = wallHeight / 2;
 scene.add(wall1);
 
-var wall2Geometry = new THREE.BoxGeometry(wallThickness, wallHeight, boardDepth);
-var wall2 = new THREE.Mesh(wall2Geometry, wallMaterial);
+// Wall 2: Negative X
+const wall2Geometry = new THREE.BoxGeometry(wallThickness, wallHeight, boardDepth);
+const wall2 = new THREE.Mesh(wall2Geometry, wallMaterial);
 wall2.position.x = -boardWidth / 2 - wallThickness / 2;
 wall2.position.y = wallHeight / 2;
 scene.add(wall2);
 
-var wall3Geometry = new THREE.BoxGeometry(boardWidth + 2 * wallThickness, wallHeight, wallThickness);
-var wall3 = new THREE.Mesh(wall3Geometry, wallMaterial);
+// Wall 3: Positive Z
+const wall3Geometry = new THREE.BoxGeometry(boardWidth + 2 * wallThickness, wallHeight, wallThickness);
+const wall3 = new THREE.Mesh(wall3Geometry, wallMaterial);
 wall3.position.z = boardDepth / 2 + wallThickness / 2;
 wall3.position.y = wallHeight / 2;
 scene.add(wall3);
 
-var wall4Geometry = new THREE.BoxGeometry(boardWidth + 2 * wallThickness, wallHeight, wallThickness);
-var wall4 = new THREE.Mesh(wall4Geometry, wallMaterial);
+// Wall 4: Negative Z
+const wall4Geometry = new THREE.BoxGeometry(boardWidth + 2 * wallThickness, wallHeight, wallThickness);
+const wall4 = new THREE.Mesh(wall4Geometry, wallMaterial);
 wall4.position.z = -boardDepth / 2 - wallThickness / 2;
 wall4.position.y = wallHeight / 2;
 scene.add(wall4);
 
 // Step 5: Create the Initial 3D Objects (All Cubes)
-var cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-var cubeMaterialRed = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-var cube1 = new THREE.Mesh(cubeGeometry, cubeMaterialRed);
-cube1.position.set(-2, 1, 2);
+const cubeSize = 1; // Define a consistent cube size
+const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+
+const cubeMaterialRed = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const cube1 = new THREE.Mesh(cubeGeometry, cubeMaterialRed);
+cube1.position.set(-2, cubeSize / 2, 2); // Position cubes on top of the board
 scene.add(cube1);
 
-var cubeMaterialGreen = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-var cube2 = new THREE.Mesh(cubeGeometry, cubeMaterialGreen);
-cube2.position.set(0, 1, -2);
+const cubeMaterialGreen = new THREE.MeshBasicMaterial({ color: 0x009f00 });
+const cube2 = new THREE.Mesh(cubeGeometry, cubeMaterialGreen);
+cube2.position.set(0, cubeSize / 2, -2);
 scene.add(cube2);
 
-var cubeMaterialBlue = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-var cube3 = new THREE.Mesh(cubeGeometry, cubeMaterialBlue);
-cube3.position.set(3, 1, 0);
+const cubeMaterialBlue = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+const cube3 = new THREE.Mesh(cubeGeometry, cubeMaterialBlue);
+cube3.position.set(3, cubeSize / 2, 0);
 scene.add(cube3);
 
-var movableObjects = [cube1, cube2, cube3];
-var selectedObject = null;
+const movableObjects = [cube1, cube2, cube3];
+let selectedObject = null;
+let edgesMesh = null; // Variable to hold the edges highlight mesh
 
 // Step 6: Set up Camera Position
 camera.position.set(3, 8, 4);
@@ -87,71 +101,81 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 
 function onMouseClick(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObjects(movableObjects);
+    // Calculate mouse position relative to the canvas element
+    const canvasBounds = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((event.clientX - canvasBounds.left) / canvasBounds.width) * 2 - 1;
+    mouse.y = - ((event.clientY - canvasBounds.top) / canvasBounds.height) * 2 + 1;
 
-  if (intersects.length > 0) {
-    selectedObject = intersects[0].object;
-    console.log('Selected:', selectedObject.uuid);
-  } else {
-    selectedObject = null;
-    console.log('Deselected');
-  }
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(movableObjects);
+
+    // If an object is intersected AND it's not the currently selected one
+    if (intersects.length > 0 && intersects[0].object !== selectedObject) {
+        // Deselect previous object if any
+        if (selectedObject) {
+            if (edgesMesh) {
+                selectedObject.remove(edgesMesh); // Remove the old highlight
+                edgesMesh.geometry.dispose();
+                edgesMesh.material.dispose();
+                edgesMesh = null;
+            }
+        }
+
+        selectedObject = intersects[0].object;
+
+        // Highlight the selected object's edges
+        const edges = new THREE.EdgesGeometry(selectedObject.geometry);
+        edgesMesh = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xffff00, linewidth: 4 })); // Bright yellow edges
+        selectedObject.add(edgesMesh); // Add edges as a child of the object so they move/rotate together
+
+        console.log('Selected:', selectedObject.uuid);
+    } else if (intersects.length === 0 && selectedObject) {
+        // Clicked on empty space AND an object was selected, so deselect
+        if (edgesMesh) {
+            selectedObject.remove(edgesMesh); // Remove the highlight
+            edgesMesh.geometry.dispose();
+            edgesMesh.material.dispose();
+            edgesMesh = null;
+        }
+        selectedObject = null;
+        console.log('Deselected');
+    }
+    // If clicked on the already selected object, do nothing.
+    // If clicked on empty space and nothing was selected, do nothing.
 }
 
-window.addEventListener('click', onMouseClick, false);
+// Attach event listener to the renderer's DOM element for accurate clicks
+renderer.domElement.addEventListener('click', onMouseClick, false);
 
+// --- Key Input Tracking ---
+const pressedKeys = {}; // Object to store currently pressed keys
+
+// Step 8: Implement Forward/Backward/Left/Right Movement (relative to camera direction)
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    selectedObject = null;
-    console.log('Deselected via Escape');
-  }
+    pressedKeys[event.key.toLowerCase()] = true; // Store key as pressed
 });
 
-// Step 8: Implement Forward/Backward/Left/Right Movement
-document.addEventListener('keydown', function(event) {
-  if (selectedObject) {
-    var moveSpeed = 0.1;
-    if (event.key === 'w') {
-      selectedObject.translateZ(-moveSpeed);
-    } else if (event.key === 's') {
-      selectedObject.translateZ(moveSpeed);
-    } else if (event.key === 'a') {
-      selectedObject.translateX(-moveSpeed);
-    } else if (event.key === 'd') {
-      selectedObject.translateX(moveSpeed);
-    }
-  }
-});
+document.addEventListener('keyup', function(event) {
+    pressedKeys[event.key.toLowerCase()] = false; // Mark key as released
 
-// Step 9: Implement Rotation (Q, E)
-document.addEventListener('keydown', function(event) {
-  if (selectedObject) {
-    var rotationSpeed = 0.05;
-    if (event.key === 'q') {
-      selectedObject.rotation.y += rotationSpeed;
-    } else if (event.key === 'e') {
-      selectedObject.rotation.y -= rotationSpeed;
+    // Handle Escape key on keyup to deselect
+    if (event.key === 'Escape') {
+        if (selectedObject) {
+            if (edgesMesh) {
+                selectedObject.remove(edgesMesh); // Remove the highlight
+                edgesMesh.geometry.dispose();
+                edgesMesh.material.dispose();
+                edgesMesh = null;
+            }
+            selectedObject = null;
+            console.log('Deselected via Escape');
+        }
     }
-  }
-});
-
-// Step 10: Implement Up/Down Movement (+, -)
-document.addEventListener('keydown', function(event) {
-  if (selectedObject) {
-    var moveSpeed = 0.1;
-    if (event.key === '+') {
-      selectedObject.position.y += moveSpeed;
-    } else if (event.key === '-') {
-      selectedObject.position.y -= moveSpeed;
-    }
-  }
 });
 
 // Step 11: Introduce Realistic Gravity (Constant Acceleration)
-var gravityAcceleration = -0.01; // Adjust this value for stronger/weaker gravity
+const gravityAcceleration = -0.005; // Adjusted for a slightly faster fall
+const friction = 0.95; // Basic friction for stopping movement
 
 // Add a velocity property to each movable object
 for (var i = 0; i < movableObjects.length; i++) {
@@ -311,13 +335,74 @@ function checkObjectCollisions() {
 
 // Step 14 & 15: Animation Loop and Resizing
 function animate() {
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
-  applyGravity();
-  checkWallCollisions();
-  checkObjectCollisions();
+    // Apply object movement based on pressed keys
+    if (selectedObject) {
+        const moveSpeed = 0.1;
+        const rotationSpeed = 0.05;
+        const cameraDirection = new THREE.Vector3();
+        camera.getWorldDirection(cameraDirection);
+        cameraDirection.y = 0; // Ignore vertical component for horizontal movement
+        cameraDirection.normalize();
 
-  renderer.render(scene, camera);
+        // Corrected calculation for rightDirection: cross (forward, up)
+        const rightDirection = new THREE.Vector3().crossVectors(cameraDirection, camera.up).normalize();
+
+        if (pressedKeys['w']) {
+            selectedObject.position.addScaledVector(cameraDirection, moveSpeed);
+        }
+        if (pressedKeys['s']) {
+            selectedObject.position.addScaledVector(cameraDirection, -moveSpeed);
+        }
+        if (pressedKeys['a']) { // 'a' moves left
+            selectedObject.position.addScaledVector(rightDirection, -moveSpeed);
+        }
+        if (pressedKeys['d']) { // 'd' moves right
+            selectedObject.position.addScaledVector(rightDirection, moveSpeed);
+        }
+        if (pressedKeys['q']) {
+            selectedObject.rotation.y += rotationSpeed;
+        }
+        if (pressedKeys['e']) {
+            selectedObject.rotation.y -= rotationSpeed;
+        }
+        if (pressedKeys['='] || pressedKeys['+']) {
+            selectedObject.position.y += moveSpeed;
+        }
+        if (pressedKeys['-'] || pressedKeys['_']) {
+            selectedObject.position.y -= moveSpeed;
+        }
+    }
+
+
+    // Update physics only if not dragging a selected object
+    if (!isDragging) {
+        applyGravity();
+        checkWallCollisions();
+        checkObjectCollisions();
+    } else if (selectedObject) {
+        // If selected object is being dragged, ensure other objects still apply gravity
+        for (const object of movableObjects) {
+            if (object !== selectedObject) {
+                // Apply gravity to unselected objects
+                object.velocity.y += gravityAcceleration;
+                object.position.add(object.velocity);
+                // Basic floor collision for non-selected objects
+                const halfHeight = cubeSize / 2;
+                if (object.position.y - halfHeight < board.position.y + boardHeight / 2) {
+                    object.position.y = board.position.y + boardHeight / 2 + halfHeight;
+                    object.velocity.y = 0;
+                    object.velocity.x *= friction;
+                    object.velocity.z *= friction;
+                }
+            }
+        }
+        checkWallCollisions(); // Check all wall collisions
+        checkObjectCollisions(); // Check all object collisions
+    }
+
+    renderer.render(scene, camera);
 }
 
 animate();
@@ -329,3 +414,34 @@ function onWindowResize() {
 }
 
 window.addEventListener('resize', onWindowResize, false);
+
+renderer.domElement.addEventListener('mousedown', onMouseDown, false);
+renderer.domElement.addEventListener('mousemove', onMouseMove, false);
+renderer.domElement.addEventListener('mouseup', onMouseUp, false);
+renderer.domElement.addEventListener('mouseleave', onMouseUp, false); // Important: stop dragging if mouse leaves canvas
+
+function onMouseDown(event) {
+    if (selectedObject) { // Allow dragging if there's a selected object
+        isDragging = true;
+        previousMousePosition.x = event.clientX;
+        previousMousePosition.y = event.clientY;
+    }
+}
+
+function onMouseMove(event) {
+    if (!isDragging || !selectedObject) return; // Only drag if dragging and a selected object exists
+
+    const deltaX = event.clientX - previousMousePosition.x;
+    const deltaY = event.clientY - previousMousePosition.y;
+
+    // For rotation based on mouse drag (common for orbit controls):
+    selectedObject.rotation.y += deltaX * 0.01;
+    selectedObject.rotation.x += deltaY * 0.01;
+
+    previousMousePosition.x = event.clientX;
+    previousMousePosition.y = event.clientY;
+}
+
+function onMouseUp() {
+    isDragging = false;
+}
